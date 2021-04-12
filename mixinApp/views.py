@@ -11,6 +11,7 @@ from .serializers import StudentSerializer
 
 class StudentViewSet(viewsets.ModelViewSet):
     """
+    viewsets.ReadOnlyModelViewSet: exposes only the read-based operations i.e get(many) & get(single/detail)
     viewsets.ModelViewSet: handles all pk and non-pk based operations
     """
     queryset = Student.objects.all()

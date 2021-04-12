@@ -6,6 +6,8 @@ pip-selfcheck.json
 .vscode/
 .vscode
 
+passw
+
 # Django related
 # src/<yourproject>/settings/local.py
 # static-cdn/  # any collected static files
