@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import viewsets
 from rest_framework.generics import GenericAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, RetrieveModelMixin, DestroyModelMixin, \
     ListModelMixin
@@ -8,22 +9,29 @@ from .models import Student
 from .serializers import StudentSerializer
 
 
-class StudentList(ListCreateAPIView):
+class StudentViewSet(viewsets.ModelViewSet):
     """
-    Non-pk based operations
-    ListCreateAPIView: handles listing all model objects and creating a new student object
+    viewsets.ModelViewSet: handles all pk and non-pk based operations
     """
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
-
-class StudentDetail(RetrieveUpdateDestroyAPIView):
-    """
-    PK-based operations
-    RetrieveUpdateDestroyAPIView: handles get(single), put(update), and delete(destroy) request
-    """
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+# class StudentList(ListCreateAPIView):
+#     """
+#     Non-pk based operations
+#     ListCreateAPIView: handles listing all model objects and creating a new student object
+#     """
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
+#
+#
+# class StudentDetail(RetrieveUpdateDestroyAPIView):
+#     """
+#     PK-based operations
+#     RetrieveUpdateDestroyAPIView: handles get(single), put(update), and delete(destroy) request
+#     """
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
 
 # class StudentList(ListModelMixin, CreateModelMixin, GenericAPIView):
 #     """
