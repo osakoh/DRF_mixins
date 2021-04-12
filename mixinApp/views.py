@@ -13,7 +13,7 @@ class StudentList(ListModelMixin, CreateModelMixin, GenericAPIView):
     Non-primary based endpoints
     ListModelMixin: retrieves all Student objects in the DB
     CreateModelMixin: creates a new object
-    GenericAPIView: Base class for all other generic views.
+    GenericAPIView: Base class for all other generic views
     """
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
@@ -25,3 +25,26 @@ class StudentList(ListModelMixin, CreateModelMixin, GenericAPIView):
     def post(self, request):
         """ inherits from CreateModelMixin: used to create a new Student object """
         return self.create(request)
+
+
+class StudentDetail(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, GenericAPIView):
+    """
+    RetrieveModelMixin: gets a single student
+    UpdateModelMixin: for updating an object
+    DestroyModelMixin: handles delete request
+    GenericAPIView: Base class for all other generic views.
+    """
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+    def get(self, request, pk):
+        """
+        pk: retrieves a single record
+        """
+        return self.retrieve(request, pk)
+
+    def put(self, request, pk):
+        return self.update(request, pk)
+
+    def delete(self, request, pk):
+        return self.destroy(request, pk)
